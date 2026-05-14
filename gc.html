@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concept 1: The Gallery Curator</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #fdfbf7; color: #4a3319; line-height: 1.6; }
+        header { max-width: 1000px; margin: 0 auto; padding: 60px 20px; display: flex; align-items: center; gap: 40px; }
+        .profile-img { width: 160px; height: 160px; background: #8c6239; border-radius: 4px; flex-shrink: 0; box-shadow: 0 4px 12px rgba(74,51,25,0.08); }
+        .hero-text h1 { margin: 0 0 10px; font-size: 2.2em; color: #4a3319; font-weight: 400; }
+        .hero-text p { margin: 0; color: #6e553a; font-size: 1.1em; }
+        
+        .gallery-container { max-width: 1000px; margin: 0 auto; padding: 20px; display: grid; grid-template-columns: repeat(12, 1fr); gap: 30px; }
+        .card { background: #fff; border: 1px solid #e6dcce; border-radius: 4px; padding: 15px; box-shadow: 0 4px 15px rgba(74,51,25,0.04); display: flex; flex-direction: column; transition: transform 0.2s; }
+        .card:hover { transform: translateY(-4px); }
+        .card-img { width: 100%; height: 220px; background: #e6dcce; border-radius: 2px; margin-bottom: 15px; }
+        .card h2 { margin: 0 0 8px; font-size: 1.3em; font-weight: 400; }
+        .card p { margin: 0 0 15px; font-size: 0.9em; color: #6e553a; flex-grow: 1; }
+        
+        .btn { display: inline-block; background: #8c6239; color: #fff; text-decoration: none; padding: 8px 16px; font-size: 0.85em; text-align: center; border-radius: 4px; width: fit-content; transition: background 0.2s; }
+        .btn:hover { background: #4a3319; }
+
+        /* Asymmetrisk grid-placering */
+        .card-art { grid-column: span 7; }
+        .card-kroki { grid-column: span 5; }
+        .card-photo { grid-column: span 5; }
+        .card-about { grid-column: span 7; }
+
+        .artlab-footer { background: #4a3319; color: #fdfbf7; padding: 60px 20px; text-align: center; margin-top: 80px; }
+        .artlab-box { max-width: 600px; margin: 0 auto; }
+        .artlab-logo { width: 80px; height: 80px; background: #e6dcce; margin: 0 auto 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #4a3319; }
+        .artlab-footer h3 { font-size: 1.6em; margin: 0 0 10px; font-weight: 400; }
+        .artlab-footer p { color: #d8c8b4; margin: 0 0 25px; }
+        .artlab-links { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .btn-light { background: #fdfbf7; color: #4a3319; }
+        .btn-light:hover { background: #e6dcce; color: #4a3319; }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; text-align: center; padding: 40px 20px; }
+            .card-art, .card-kroki, .card-photo, .card-about { grid-column: span 12; }
+            .gallery-container { gap: 20px; }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="profile-img"></div>
+        <div class="hero-text">
+            <h1>Art by Jannis Politidis</h1>
+            <p>Explore a world of traditional watercolor creativity, photography, and free tools for digital artists.</p>
+        </div>
+    </header>
+
+    <main class="gallery-container">
+        <div class="card card-art">
+            <div class="card-img"></div>
+            <h2>Art - Konst</h2>
+            <p>Traditional watercolor paintings exploring life, contrast, and standard forms.</p>
+            <a href="#" class="btn">View Gallery</a>
+        </div>
+        <div class="card card-kroki">
+            <div class="card-img"></div>
+            <h2>Gesture Drawing - Kroki</h2>
+            <p>Quick figure sketching timers and practice materials.</p>
+            <a href="#" class="btn">Start Timer</a>
+        </div>
+        <div class="card card-photo">
+            <div class="card-img"></div>
+            <h2>Photography - Fotografi</h2>
+            <p>Capturing raw everyday moments and high-contrast street art portraiture.</p>
+            <a href="#" class="btn">View Photos</a>
+        </div>
+        <div class="card card-about">
+            <div class="card-img"></div>
+            <h2>About Me - Om mig</h2>
+            <p>The story behind the brush, the camera lens, and the code scripts.</p>
+            <a href="#" class="btn">Read Biography</a>
+        </div>
+    </main>
+
+    <footer class="artlab-footer">
+        <div class="artlab-box">
+            <div class="artlab-logo">LAB</div>
+            <h3>ArtLab - Konstlabbe</h3>
+            <p>Free, fast, and completely private marketing infrastructure built specifically for creators.</p>
+            <div class="artlab-links">
+                <a href="#" class="btn btn-light">Alt-Text Baker</a>
+                <a href="#" class="btn btn-light">Watermark Tool</a>
+                <a href="#" class="btn btn-light">SEO Checklist</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
