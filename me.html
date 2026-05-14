@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concept 2: The Modern Editorial</title>
+    <style>
+        body { margin: 0; font-family: 'Segoe UI', Arial, sans-serif; background: #fff; color: #4a3319; }
+        
+        .hero-split { display: flex; min-height: 450px; background: #4a3319; color: #fdfbf7; }
+        .hero-side-text { width: 50%; padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+        .hero-side-text h1 { font-size: 2.8em; margin: 0 0 15px; font-weight: 300; }
+        .hero-side-text p { font-size: 1.2em; color: #d8c8b4; margin: 0; }
+        .hero-side-img { width: 50%; background: #8c6239; position: relative; }
+
+        .section-block { display: flex; align-items: center; max-width: 1100px; margin: 80px auto; padding: 0 20px; gap: 60px; }
+        .section-block:nth-child(even) { flex-direction: row-reverse; }
+        .block-img { width: 50%; height: 350px; background: #f4efe6; border-radius: 8px; box-shadow: 0 8px 24px rgba(74,51,25,0.06); }
+        .block-content { width: 50%; }
+        .block-content h2 { font-size: 2em; margin: 0 0 15px; font-weight: 400; }
+        .block-content p { font-size: 1.05em; color: #6e553a; margin: 0 0 25px; line-height: 1.6; }
+        
+        .btn-editorial { display: inline-block; border: 1px solid #4a3319; color: #4a3319; text-decoration: none; padding: 10px 24px; font-size: 0.9em; letter-spacing: 1px; text-transform: uppercase; transition: all 0.2s; }
+        .btn-editorial:hover { background: #4a3319; color: #fff; }
+
+        .full-banner { background: #f4efe6; padding: 80px 20px; text-align: center; }
+        .full-banner h2 { font-size: 2.2em; margin: 0 0 10px; }
+        .full-banner p { max-width: 600px; margin: 0 auto 30px; color: #6e553a; }
+        
+        @media (max-width: 768px) {
+            .hero-split { flex-direction: column; }
+            .hero-side-text, .hero-side-img { width: 100%; min-height: auto; padding: 40px 20px; }
+            .hero-side-img { height: 250px; }
+            .section-block, .section-block:nth-child(even) { flex-direction: column; margin: 40px auto; gap: 25px; }
+            .block-img, .block-content { width: 100%; height: 240px; }
+            .block-content { height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="hero-split">
+        <div class="hero-side-text">
+            <h1>Jannis Politidis</h1>
+            <p>Traditional watercolor paintings meets modern digital software engineering.</p>
+        </div>
+        <div class="hero-side-img"></div>
+    </div>
+
+    <main>
+        <div class="section-block">
+            <div class="block-img"></div>
+            <div class="block-content">
+                <h2>Art - Konst Gallery</h2>
+                <p>A curated look inside my latest watercolor collection. Focused on heavy forms, light balancing, and raw studio sketches.</p>
+                <a href="#" class="btn-editorial">Explore Art</a>
+            </div>
+        </div>
+
+        <div class="section-block">
+            <div class="block-img"></div>
+            <div class="block-content">
+                <h2>Gesture & Kroki</h2>
+                <p>Improve your quick drafting skills. Access active figure pose timers built for both students and professional creative makers.</p>
+                <a href="#" class="btn-editorial">Launch Timers</a>
+            </div>
+        </div>
+
+        <div class="section-block">
+            <div class="block-img"></div>
+            <div class="block-content">
+                <h2>Photography Hub</h2>
+                <p>High-contrast, dramatic black and white street photography capturing honest reactions and real environment frameworks.</p>
+                <a href="#" class="btn-editorial">View Catalog</a>
+            </div>
+        </div>
+    </main>
+
+    <div class="full-banner">
+        <h2>ArtLab Platform</h2>
+        <p>Unlock our highly optimized suite of image metadata bakers, private local audit tools, and copyright protections.</p>
+        <a href="#" class="btn-editorial">Open ArtLab</a>
+    </div>
+
+</body>
+</html>
