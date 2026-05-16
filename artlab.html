@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art by Jannis Politidis - Tools Dashboard</title>
+    <style>
+        :root {
+            --bg-color: #ffffff;
+            --card-bg: #EFEBE4;
+            --accent-brown: #8C6239;
+            --text-dark: #333333;
+            --text-muted: #666666;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            padding: 30px 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* Profile Header */
+        .header {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+
+        .profile-box {
+            width: 140px;
+            height: 140px;
+            background-color: var(--accent-brown);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            font-size: 11px;
+            padding: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .header-text h1 {
+            font-size: 32px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .header-text p {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* 2-Column Layout Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+
+        /* Tool Cards */
+        .card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 4px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .image-container {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background-color: var(--card-bg);
+            margin-bottom: 20px;
+            border-radius: 2px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-brown);
+            letter-spacing: 1px;
+            border: 1px solid rgba(0,0,0,0.03);
+            text-align: center;
+            padding: 10px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        /* Hollow Button Style to Fix Blue Links */
+        .card-btn {
+            display: inline-block;
+            align-self: flex-start;
+            background-color: transparent;
+            border: 1px solid var(--accent-brown);
+            padding: 10px 24px;
+            font-size: 13px;
+            font-weight: 500;
+            border-radius: 4px;
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+        }
+
+        .card-btn:hover {
+            background-color: rgba(140, 98, 57, 0.05);
+        }
+
+        .under-construction {
+            opacity: 0.7;
+        }
+
+        .disabled-btn {
+            border-color: #ccc !important;
+            color: #999 !important;
+            cursor: not-allowed;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <header class="header">
+            <div class="profile-box">
+                _-IMAGE URL HERE-
+            </div>
+            <div class="header-text">
+                <h1>Art by Jannis Politidis</h1>
+                <p>Explore a world of traditional watercolor creativity, photography, and free tools for digital artists.</p>
+            </div>
+        </header>
+
+        <main class="grid" id="tools-grid"></main>
+    </div>
+
+    <script>
+        const toolsDatabase = [
+            {
+                url: "https://akvarellskiss.se",
+                title: "ArtLab Painting Values Tool",
+                desc: "Analyze and isolate specific color values and light balances in your reference images.",
+                img: "" 
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Color Harmony Palette",
+                desc: "Explore perfectly balanced harmonic color schemes and mixing charts for your watercolor palette.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Pigment Database",
+                desc: "An extensive traditional reference library containing comprehensive chemical, lightfastness, and transparency indexes.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Perspective Tool",
+                desc: "Easily set up complex horizon lines, focal nodes, and grids to sketch layouts perfectly.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Watercolor Granulation Tool",
+                desc: "A dedicated tool built for tracking and understanding heavy pigment aggregation across rough papers.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Artist Mirror",
+                desc: "Flip your reference compositions or artwork mirrors digitally to instantly check balance flaws.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Watercolor Palette Extractor",
+                desc: "Upload reference photos to instantly pull accurate watercolor pigments and matching paint keys.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Art Composition Planner & Image Transfer Grid",
+                desc: "Plan layouts with structural rule-of-thirds overlays or precise grids for easy drafting canvas transfers.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Affordable Watercolor Paper Guide",
+                desc: "A smart resource guide to finding high-quality cotton substrates without overspending.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Watercolor Paper Price Calculator",
+                desc: "Quickly break down costs per sheet or centimeter to budget studio paper assets.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Image Editor for Artists",
+                desc: "Clean digital editor optimized to crop, contrast, and color-correct final artwork files for publishing.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Art Pricing Calculator",
+                desc: "Systematically calculate your artistic retail values using established dimensions and labor metrics.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Artwork Valuation Tool",
+                desc: "Evaluate medium properties, frame additions, and market scales to establish balanced pricing lists.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Certificate of Authenticity Generator",
+                desc: "Instantly draft professional, print-ready certificates of authenticity files for your collectors.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Mockup Generator",
+                desc: "Embed flat artwork digital crops inside realistic interior rooms and frames for presentation.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Social Media Art Formatting Guide",
+                desc: "Check essential crop profiles and optimal display file parameters for all your networks.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Artist Signature Tool",
+                desc: "Apply clean custom branding parameters and signatures cleanly over digital preview images.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Alt Text Generator for Artists",
+                desc: "Generate clean web descriptions for your paintings to improve structural accessibility.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "SEO Audit Tool for Artists",
+                desc: "Audit optimization points on portfolios to increase visibility across search engines.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "SEO Score Dashboard",
+                desc: "Track critical organic metrics, keyword progress, and visual layout optimization scores directly.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Copyright Watermark for Artists",
+                desc: "Protect online visual records by stamping customizable copyright protection signatures.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Artists Exhibition Companion",
+                desc: "Calculate perfect physical canvas space allocations and map beautiful show hangs.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Exhibition Assistant",
+                desc: "Organize show calendars, hanging orders, and shipping timelines effectively.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Sell Your Art Online",
+                desc: "An instructional guide covering payment setups and optimization steps for your digital storefront.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Gallery Exhibition Blueprint Manager",
+                desc: "Manage structural frame borders, title placements, and physical studio checklists.",
+                img: ""
+            }
+        ];
+
+        function renderDashboard() {
+            const gridContainer = document.getElementById('tools-grid');
+            gridContainer.innerHTML = ''; 
+
+            toolsDatabase.forEach(item => {
+                const cardEl = document.createElement('div');
+                cardEl.className = 'card';
+
+                const imageSource = item.img && item.img.trim() !== "" 
+                    ? `<img src="${item.img}" alt="${item.title}">` 
+                    : `_-IMAGE URL HERE-`;
+
+                cardEl.innerHTML = `
+                    <div class="image-container">${imageSource}</div>
+                    <h2 class="card-title">${item.title}</h2>
+                    <p class="card-desc">${item.desc}</p>
+                    <a href="${item.url}" target="_blank" class="card-btn">View Tool</a>
+                `;
+                gridContainer.appendChild(cardEl);
+            });
+
+            for(let i = 0; i < 2; i++) {
+                const ucCard = document.createElement('div');
+                ucCard.className = 'card under-construction';
+                ucCard.innerHTML = `
+                    <div class="image-container">_-IMAGE URL HERE-</div>
+                    <h2 class="card-title">Under Construction</h2>
+                    <p class="card-desc">A new creative tool is being programmed here. Check back soon for studio updates.</p>
+                    <a href="#" onclick="return false;" class="card-btn disabled-btn">Coming Soon</a>
+                `;
+                gridContainer.appendChild(ucCard);
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', renderDashboard);
+    </script>
+</body>
+</html>
+
+            --text-muted: #666666;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-dark);
+            padding: 30px 15px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        /* Profile Header */
+        .header {
+            display: flex;
+            align-items: flex-start;
+            gap: 24px;
+            margin-bottom: 50px;
+        }
+
+        .profile-box {
+            width: 140px;
+            height: 140px;
+            background-color: var(--accent-brown);
+            flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            text-align: center;
+            font-size: 11px;
+            padding: 10px;
+            font-weight: bold;
+            letter-spacing: 1px;
+        }
+
+        .header-text h1 {
+            font-size: 32px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 12px;
+        }
+
+        .header-text p {
+            font-size: 16px;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        /* 2-Column Layout Grid */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        @media (max-width: 768px) {
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            .header {
+                flex-direction: column;
+                gap: 16px;
+            }
+        }
+
+        /* Tool Cards */
+        .card {
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            border-radius: 4px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+        }
+
+        .image-container {
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            background-color: var(--card-bg);
+            margin-bottom: 20px;
+            border-radius: 2px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+            font-weight: bold;
+            color: var(--accent-brown);
+            letter-spacing: 1px;
+            border: 1px solid rgba(0,0,0,0.03);
+            text-align: center;
+            padding: 10px;
+        }
+
+        .image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .card-title {
+            font-size: 20px;
+            font-weight: 500;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .card-desc {
+            font-size: 14px;
+            color: var(--text-muted);
+            line-height: 1.6;
+            margin-bottom: 24px;
+            flex-grow: 1;
+        }
+
+        .card-btn {
+            display: inline-block;
+            align-self: flex-start;
+            background-color: var(--accent-brown);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 10px 20px;
+            font-size: 13px;
+            border-radius: 4px;
+            transition: opacity 0.2s ease;
+        }
+
+        .card-btn:hover {
+            opacity: 0.9;
+        }
+
+        .under-construction {
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Main profile header block -->
+        <header class="header">
+            <div class="profile-box">
+                _-IMAGE URL HERE-
+            </div>
+            <div class="header-text">
+                <h1>Art by Jannis Politidis</h1>
+                <p>Explore a world of traditional watercolor creativity, photography, and free tools for digital artists.</p>
+            </div>
+        </header>
+
+        <!-- The grid where tools are dynamically inserted -->
+        <main class="grid" id="tools-grid"></main>
+    </div>
+
+    <script>
+        /**
+         * LINK LIST DATABASE
+         * To add a new card, simply copy and paste a block inside this array.
+         * The code reads this list and builds the boxes automatically!
+         **/
+        const toolsDatabase = [
+            {
+                url: "https://akvarellskiss.se",
+                title: "ArtLab Painting Values Tool",
+                desc: "Analyze and isolate specific color values and light balances in your reference images.",
+                img: "" 
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Color Harmony Palette",
+                desc: "Explore perfectly balanced harmonic color schemes and mixing charts for your watercolor palette.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Pigment Database",
+                desc: "An extensive traditional reference library containing comprehensive chemical, lightfastness, and transparency indexes.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Perspective Tool",
+                desc: "Easily set up complex horizon lines, focal nodes, and grids to sketch layouts perfectly.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Watercolor Granulation Tool",
+                desc: "A dedicated tool built for tracking and understanding heavy pigment aggregation across rough papers.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Artist Mirror",
+                desc: "Flip your reference compositions or artwork mirrors digitally to instantly check balance flaws.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Watercolor Palette Extractor",
+                desc: "Upload reference photos to instantly pull accurate watercolor pigments and matching paint keys.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Art Composition Planner & Image Transfer Grid",
+                desc: "Plan layouts with structural rule-of-thirds overlays or precise grids for easy drafting canvas transfers.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Affordable Watercolor Paper Guide",
+                desc: "A smart resource guide to finding high-quality cotton substrates without overspending.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Watercolor Paper Price Calculator",
+                desc: "Quickly break down costs per sheet or centimeter to budget studio paper assets.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Image Editor for Artists",
+                desc: "Clean digital editor optimized to crop, contrast, and color-correct final artwork files for publishing.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Art Pricing Calculator",
+                desc: "Systematically calculate your artistic retail values using established dimensions and labor metrics.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Artwork Valuation Tool",
+                desc: "Evaluate medium properties, frame additions, and market scales to establish balanced pricing lists.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Certificate of Authenticity Generator",
+                desc: "Instantly draft professional, print-ready certificates of authenticity files for your collectors.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Mockup Generator",
+                desc: "Embed flat artwork digital crops inside realistic interior rooms and frames for presentation.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Social Media Art Formatting Guide",
+                desc: "Check essential crop profiles and optimal display file parameters for all your networks.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Artist Signature Tool",
+                desc: "Apply clean custom branding parameters and signatures cleanly over digital preview images.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Alt Text Generator for Artists",
+                desc: "Generate clean web descriptions for your paintings to improve structural accessibility.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "SEO Audit Tool for Artists",
+                desc: "Audit optimization points on portfolios to increase visibility across search engines.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "SEO Score Dashboard",
+                desc: "Track critical organic metrics, keyword progress, and visual layout optimization scores directly.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Copyright Watermark for Artists",
+                desc: "Protect online visual records by stamping customizable copyright protection signatures.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Artists Exhibition Companion",
+                desc: "Calculate perfect physical canvas space allocations and map beautiful show hangs.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Exhibition Assistant",
+                desc: "Organize show calendars, hanging orders, and shipping timelines effectively.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Sell Your Art Online",
+                desc: "An instructional guide covering payment setups and optimization steps for your digital storefront.",
+                img: ""
+            },
+            {
+                url: "https://akvarellskiss.se",
+                title: "Gallery Exhibition Blueprint Manager",
+                desc: "Manage structural frame borders, title placements, and physical studio checklists.",
+                img: ""
+            }
+        ];
+
+        // Renders the UI cards onto the layout canvas screen
+        function renderDashboard() {
+            const gridContainer = document.getElementById('tools-grid');
+            gridContainer.innerHTML = ''; 
+
+            // Render active tools
+            toolsDatabase.forEach(item => {
+                const cardEl = document.createElement('div');
+                cardEl.className = 'card';
+
+                // Uses custom image string or fallbacks to uppercase text string inside code output
+                const imageSource = item.img && item.img.trim() !== "" 
+                    ? `<img src="${item.img}" alt="${item.title}">` 
+                    : `_-IMAGE URL HERE-`;
+
+                cardEl.innerHTML = `
+                    <div class="image-container">${imageSource}</div>
+                    <h2 class="card-title">${item.title}</h2>
+                    <p class="card-desc">${item.desc}</p>
+                    <a href="${item.url}" target="_blank" class="card-btn">View Tool</a>
+                `;
+                gridContainer.appendChild(cardEl);
+            });
+
+            // Append 2 extra Under Construction cards at the very end
+            for(let i = 0; i < 2; i++) {
+                const ucCard = document.createElement('div');
+                ucCard.className = 'card under-construction';
+                ucCard.innerHTML = `
+                    <div class="image-container">_-IMAGE URL HERE-</div>
+                    <h2 class="card-title">Under Construction</h2>
+                    <p class="card-desc">A new creative tool is being programmed here. Check back soon for studio updates.</p>
+                    <a href="#" onclick="return false;" class="card-btn" style="background-color: #aaa; cursor: not-allowed;">Coming Soon</a>
+                `;
+                gridContainer.appendChild(ucCard);
+            }
+        }
+
+        // Initialize script processing
+        window.addEventListener('DOMContentLoaded', renderDashboard);
+    </script>
+</body>
+</html>
